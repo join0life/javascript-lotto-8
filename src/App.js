@@ -1,8 +1,12 @@
+import LottoController from "./controller/LottoController.js";
+
 class App {
   async run() {
     /**
-     * @TODO try catch로 오류 관리
+     * @TODO 진입점
      */
+    const lottoController = new LottoController();
+    await lottoController.run();
   }
 }
 
