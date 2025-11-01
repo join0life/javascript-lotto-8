@@ -12,7 +12,8 @@ class LottoMachine {
 
     for (let i = 0; i < count; i++) {
       const numbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
-      this.#lottos.push(numbers);
+      const sortedNumbers = numbers.sort((a, b) => a - b);
+      this.#lottos.push(sortedNumbers);
     }
 
     return { count, lottos: this.#lottos };
