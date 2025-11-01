@@ -13,6 +13,14 @@ class InputView {
     return this.#validate(purchaseAmount);
   }
 
+  async readLottoNumbers() {
+    const lottoNumbersInput = await Console.readLineAsync(
+      "\n당첨 번호를 입력해 주세요.\n"
+    );
+    const lottoNumbers = lottoNumbersInput.split(",").map((num) => num.trim());
+    return lottoNumbers;
+  }
+
   #validate(purchaseAmount) {
     if (isNaN(purchaseAmount)) {
       throw new Error("[ERROR] 숫자만 입력해야 합니다.");

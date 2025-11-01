@@ -25,6 +25,7 @@ import { Console } from "@woowacourse/mission-utils";
 class OutputView {
   printLottos(count, lottos) {
     Console.print(`\n${count}개를 구매했습니다.`);
+
     lottos.forEach((lotto) => {
       Console.print(`[${lotto.join(", ")}]`);
     });
