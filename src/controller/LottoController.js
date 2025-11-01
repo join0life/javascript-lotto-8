@@ -25,7 +25,7 @@ class LottoController {
         this.#lottoMachine.generateLottos(purchaseAmount);
       this.#outputView.printLottos(count, lottos);
 
-      const winningLotto = await this.#getWinningLotto();
+      const winningLotto = await this.#getWinningNumbers();
     } catch (error) {
       /**
        * @TODO 에러 처리 수정
@@ -34,13 +34,13 @@ class LottoController {
     }
   }
 
-  async #getWinningLotto() {
+  async #getWinningNumbers() {
     try {
-      const lottoNumbers = await this.#inputView.readLottoNumbers();
-      return new Lotto(lottoNumbers);
+      const winningNumbers = await this.#inputView.readWinningNumbers();
+      return new Lotto(winningNumbers);
     } catch (error) {
       Console.print(error.message);
-      return this.#getWinningLotto();
+      return this.#getWinningNumbers();
     }
   }
 }

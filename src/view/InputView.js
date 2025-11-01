@@ -13,12 +13,19 @@ class InputView {
     return this.#validate(purchaseAmount);
   }
 
-  async readLottoNumbers() {
-    const lottoNumbersInput = await Console.readLineAsync(
+  async readWinningNumbers() {
+    const winningNumberesInput = await Console.readLineAsync(
       "\n당첨 번호를 입력해 주세요.\n"
     );
-    const lottoNumbers = lottoNumbersInput.split(",").map((num) => num.trim());
-    return lottoNumbers;
+    const winningNumbers = winningNumberesInput
+      .split(",")
+      .map((num) => num.trim());
+
+    const bonusNumber = await Console.readLineAsync(
+      "\n보너스 번호를 입력해 주세요.\n"
+    );
+
+    return { winningNumbers, bonusNumber };
   }
 
   #validate(purchaseAmount) {
