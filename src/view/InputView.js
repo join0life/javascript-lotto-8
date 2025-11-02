@@ -14,18 +14,23 @@ class InputView {
   }
 
   async readWinningNumbers() {
-    const winningNumberesInput = await Console.readLineAsync(
+    const winningNumbersInput = await Console.readLineAsync(
       "\n당첨 번호를 입력해 주세요.\n"
     );
-    const winningNumbers = winningNumberesInput
+    const winningNumbers = winningNumbersInput
       .split(",")
-      .map((num) => num.trim());
+      .map((num) => num.trim())
+      .map(Number);
 
-    const bonusNumber = await Console.readLineAsync(
+    return winningNumbers;
+  }
+
+  async readBonusNumber() {
+    const bonusNumberInput = await Console.readLineAsync(
       "\n보너스 번호를 입력해 주세요.\n"
     );
-
-    return { winningNumbers, bonusNumber };
+    const bonusNumber = Number(bonusNumberInput);
+    return bonusNumber;
   }
 
   #validate(purchaseAmount) {

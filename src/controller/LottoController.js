@@ -6,6 +6,7 @@ import { Console } from "@woowacourse/mission-utils";
 import LottoMachine from "../domain/LottoMachine.js";
 import OutputView from "../view/OutputView.js";
 import Lotto from "../domain/Lotto.js";
+import LottoBonus from "../domain/LottoBonus.js";
 
 class LottoController {
   #inputView;
@@ -25,7 +26,8 @@ class LottoController {
         this.#lottoMachine.generateLottos(purchaseAmount);
       this.#outputView.printLottos(count, lottos);
 
-      const winningLotto = await this.#getWinningNumbers();
+      const winningNumbers = await this.#getWinningNumbers();
+      const bonusNumber = await this.#getBonusNumber(winningNumbers);
     } catch (error) {
       /**
        * @TODO 에러 처리 수정
@@ -41,6 +43,16 @@ class LottoController {
     } catch (error) {
       Console.print(error.message);
       return this.#getWinningNumbers();
+    }
+  }
+
+  async #getBonusNumber(winningNumbers) {
+    try {
+      const bonusNumber = await this.#inputView.readBonusNumber();
+      return new LottoBonus(bonusNumber, winningNumbers);
+    } catch (error) {
+      Console.print(error.message);
+      return this.#getBonusNumber(winningNumbers);
     }
   }
 }
