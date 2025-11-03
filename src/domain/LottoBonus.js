@@ -1,3 +1,8 @@
+/**
+ *  보너스 번호 담당
+ */
+import LOTTO_CONSTANTS from "../constants/LottoConstants.js";
+
 class LottoBonus {
   #bonus;
 
@@ -15,9 +20,12 @@ class LottoBonus {
       throw new Error("[ERROR] 당첨 번호와 다른 숫자를 입력해 주세요.");
     }
 
-    const bonusOutOfRange = 1 > bonus || 45 < bonus;
+    const bonusOutOfRange =
+      LOTTO_CONSTANTS.NUMBER.MIN > bonus || LOTTO_CONSTANTS.NUMBER.MAX < bonus;
     if (bonusOutOfRange) {
-      throw new Error("[ERROR] 1~45 사이의 숫자만 입력해 주세요.");
+      throw new Error(
+        `[ERROR] ${LOTTO_CONSTANTS.NUMBER.MIN}~${LOTTO_CONSTANTS.NUMBER.MAX} 사이의 숫자만 입력해 주세요.`
+      );
     }
 
     return bonus;

@@ -21,14 +21,36 @@
 총 수익률은 62.5%입니다.
  */
 import { Console } from "@woowacourse/mission-utils";
+import LOTTO_CONSTANTS from "../constants/LottoConstants.js";
 
 class OutputView {
   printLottos(count, lottos) {
     Console.print(`\n${count}개를 구매했습니다.`);
 
     lottos.forEach((lotto) => {
-      Console.print(`[${lotto.join(", ")}]`);
+      Console.print(`[${lotto}]`);
     });
+  }
+
+  printResult(countMatchNumbers, profitRate) {
+    Console.print("\n당첨 통계");
+    Console.print("---");
+    Console.print(
+      `${LOTTO_CONSTANTS.MATCH_COUNT.FIFTH}개 일치 (5,000원) - ${countMatchNumbers[3]}개`
+    );
+    Console.print(
+      `${LOTTO_CONSTANTS.MATCH_COUNT.FOURTH}개 일치 (50,000원) - ${countMatchNumbers[4]}개`
+    );
+    Console.print(
+      `${LOTTO_CONSTANTS.MATCH_COUNT.THIRD}개 일치 (1,500,000원) - ${countMatchNumbers[5]}개`
+    );
+    Console.print(
+      `${LOTTO_CONSTANTS.MATCH_COUNT.SECOND}개 일치, 보너스 볼 일치 (30,000,000원) - ${countMatchNumbers["5+bonus"]}개`
+    );
+    Console.print(
+      `${LOTTO_CONSTANTS.MATCH_COUNT.FIRST}개 일치 (2,000,000,000원) - ${countMatchNumbers[6]}개`
+    );
+    Console.print(`총 수익률은 ${profitRate}%입니다.`);
   }
 }
 

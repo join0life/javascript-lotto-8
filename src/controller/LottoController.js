@@ -7,16 +7,19 @@ import LottoMachine from "../domain/LottoMachine.js";
 import OutputView from "../view/OutputView.js";
 import Lotto from "../domain/Lotto.js";
 import LottoBonus from "../domain/LottoBonus.js";
+import LottoResult from "../domain/LottoResult.js";
 
 class LottoController {
   #inputView;
   #lottoMachine;
   #outputView;
+  #lottoResult;
 
   constructor() {
     this.#inputView = new InputView();
     this.#lottoMachine = new LottoMachine();
     this.#outputView = new OutputView();
+    this.#lottoResult = new LottoResult();
   }
 
   async run() {
@@ -28,10 +31,11 @@ class LottoController {
 
       const winningNumbers = await this.#getWinningNumbers();
       const bonusNumber = await this.#getBonusNumber(winningNumbers);
+
+      const { countMatchNumbers, profitRate } =
+        this.#lottoResult.calculateResult(winningNumbers, bonusNumber, lottos);
+      this.#outputView.printResult(countMatchNumbers, profitRate);
     } catch (error) {
-      /**
-       * @TODO 에러 처리 수정
-       */
       Console.print(error.message);
     }
   }

@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import LOTTO_CONSTANTS from "../constants/LottoConstants.js";
 
 /**
  * @TODO 로또 구입 금액, 당첨 번호 입력 받기
@@ -42,8 +43,10 @@ class InputView {
       throw new Error("[ERROR] 금액은 0보다 커야 합니다.");
     }
 
-    if (purchaseAmount % 1000 !== 0) {
-      throw new Error("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
+    if (purchaseAmount % LOTTO_CONSTANTS.PRICE.TICKET !== 0) {
+      throw new Error(
+        `[ERROR] 금액은 ${LOTTO_CONSTANTS.PRICE.TICKET}원 단위로 입력해야 합니다.`
+      );
     }
 
     return purchaseAmount;
