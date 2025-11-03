@@ -2,6 +2,7 @@
  *  보너스 번호 담당
  */
 import LOTTO_CONSTANTS from "../constants/LottoConstants.js";
+import Lotto from "./Lotto";
 
 class LottoBonus {
   #bonus;
